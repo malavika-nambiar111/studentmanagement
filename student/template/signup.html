@@ -1,0 +1,73 @@
+{% extends 'base.html'%}
+{% block title%}{% endblock%}
+
+
+{% load static %}
+
+
+{% block content%}
+<style>
+  .error{
+    border:solid red !important;
+  }
+  .success{
+    border: solid green !important;
+  }
+  .px p{
+    text-align: center !important;
+    color: red !important;
+  }
+</style>
+
+<section class="d-flex bg-light text-center text-dark justify-content-center p-5 border border-primary " >
+
+  
+
+<form action="" method="post" style=" border:thick black solid;
+margin:10px;
+padding:40px; background-color: aqua;">
+  {% csrf_token %}
+  <div>{% for message in messages %}
+    <h3>{{message}}</h3>
+  {% endfor %}
+  </div>
+
+
+    <div class="button-box ">
+      <button type="button" class="btn btn-primary" onclick="window.location.href='../login'">Log In</button>
+      <button type="button" class="btn btn-primary" onclick="window.location.href='../signup'">Sign Up</button>
+    </div>
+    <h1>SIGN UP</h1><br>
+    <div class="px">
+      <p id="text"></p>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputName">Name</label>
+        <input type="text" class="form-control" id="name" name="name"  placeholder="Enter Name" onchange="validname()" required>
+      </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail">Email</label>
+      <input type="email" class="form-control" id="email" name="email"  placeholder="Enter valid email" onchange="validmail()">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPhoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="phno" name="phno"  onchange="validphno()">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="pass1" name="password" onchange="validpass()">
+    </div>
+    
+    <div class="form-group">
+        <label for="exampleInputConfirmPassword">Confirm Password</label>
+        <input type="Password" class="form-control" id="pass2" name="password2"  onchange="validpassconfirm()">
+      </div>
+      <button type="signup" class="btn btn-primary">Sign Up</button>
+  </form>
+</section>
+
+
+  <script src="{% static 'js/signup.js'%}"></script>
+  {% endblock%}
